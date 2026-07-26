@@ -1,0 +1,16 @@
+# Field Crop Pest and Disease Management (Punjab Region Context)
+
+## Wheat Rust Diseases
+Yellow (stripe) rust, brown (leaf) rust, and black (stem) rust are the three major rust diseases affecting wheat in Punjab. Yellow rust appears as yellow-orange pustules in stripes along leaf veins and is favored by cool, humid conditions in late winter and early spring. Brown rust produces more randomly scattered orange-brown pustules and tolerates slightly warmer conditions. Resistant variety selection is the most cost-effective long-term control; where susceptible varieties are already planted, timely fungicide application at first sign of pustules, combined with avoiding excessive nitrogen which promotes lush susceptible growth, limits yield loss.
+
+## Cotton Whitefly and Pink Bollworm
+Whitefly (Bemisia tabaci) is both a direct pest, causing leaf yellowing and honeydew-related sooty mold, and a vector for cotton leaf curl virus, which causes severe yield loss. Populations peak in hot, dry conditions from mid-summer onward. Pink bollworm larvae bore into cotton bolls, damaging lint and seed internally where they are hard to detect until boll opening. Integrated management combining resistant Bt cotton varieties, pheromone trap monitoring for bollworm moth emergence timing, and conserving natural predators by minimizing broad-spectrum insecticide use gives better long-term control than insecticide-only approaches, which tend to accelerate resistance development in both pests.
+
+## Rice Stem Borer and Blast Disease
+Yellow stem borer larvae tunnel into rice stems, causing a symptom called "dead heart" in the vegetative stage and "white head" (empty, bleached panicles) if infestation occurs after heading. Rice blast, a fungal disease, produces diamond-shaped lesions on leaves and can also infect the neck of the panicle, causing it to break and drop grain-filling entirely. Both problems are worsened by excessive nitrogen application and dense planting that reduces airflow within the canopy. Balanced fertilization, adequate plant spacing, and monitoring pheromone traps for stem borer moth flights to time any needed insecticide application are the standard integrated approach.
+
+## Sugarcane Red Rot
+Red rot, caused by the fungus Colletotrichum falcatum, causes internal reddening of the cane with characteristic white patches (a diagnostic cross-section sign) and can spread through infected seed cane used for planting. There is no effective in-season chemical cure. Prevention centers on using disease-free certified seed cane, avoiding movement of cane material from infected fields, and rotating out of sugarcane for at least one season in fields with a history of red rot before replanting.
+
+## General Integrated Pest Management (IPM) Principles
+Across all these crops, the underlying IPM approach is consistent: regular field scouting to catch problems early, using resistant varieties as the first line of defense, applying targeted rather than blanket insecticide or fungicide treatments based on monitored thresholds rather than a fixed calendar, and preserving natural predator populations wherever possible since broad-spectrum chemical use tends to knock out beneficial insects along with the target pest, often leading to secondary pest outbreaks later in the season.

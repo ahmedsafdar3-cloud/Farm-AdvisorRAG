@@ -1,0 +1,16 @@
+# Harvest Timing and Yield Planning
+
+## Determining Optimal Harvest Time
+Harvest timing depends heavily on the intended end use. For oil production, fruit is typically harvested as skin color transitions from green to purple-black (véraison), when oil content is near its peak but before fruit begins to over-soften, which increases oxidation risk during processing. For table olives, earlier harvest at full green color is common for green-cured products, while black-cured table olives are picked fully ripe. Tracking accumulated growing degree days alongside visual color sampling across the orchard gives a more reliable harvest window than color alone, since ripening can vary significantly between sun-exposed and shaded canopy positions.
+
+## Yield Estimation Methods
+Per-tree yield estimation before harvest helps with labor planning, equipment scheduling, and processing capacity planning. A common manual method is counting fruit on a representative sample of branches across several trees, extrapolating by canopy volume, though this is labor-intensive and prone to sampling bias if trees are not chosen randomly across different orchard zones. Computer-vision based counting from canopy imagery, where individual fruit are detected and counted per tree, substantially reduces labor while improving consistency, particularly when combined with historical yield data to calibrate the count-to-weight conversion for the specific variety and growing conditions.
+
+## Labor Planning for Harvest
+Hand-harvesting remains standard for high-quality oil and table olive production since it minimizes fruit bruising, but it is the largest single labor cost in olive production. Estimating labor needs requires an accurate per-tree yield estimate combined with an average picking rate per worker per day, which varies with tree size, fruit density, and harvest method (hand-picking versus mechanical shaking onto nets). Early yield estimates, ideally 4-6 weeks before harvest, give enough lead time to schedule seasonal labor, particularly in regions where harvest labor is shared or contracted across multiple farms.
+
+## Post-Harvest Handling
+Fruit destined for oil extraction should be processed within 24-48 hours of harvest to minimize fermentation and oxidation, both of which degrade oil quality and increase free fatty acid content. Fruit should be kept in shallow, well-ventilated crates rather than deep piles or sacks, since compression and heat buildup accelerate spoilage. Table olives intended for curing have more flexibility in processing timeline but still benefit from cool, shaded storage prior to processing to preserve firmness.
+
+## Precision Agriculture for Harvest Planning
+Combining per-tree yield estimates with GPS-tagged orchard maps allows growers to prioritize harvest order, starting with zones showing earlier ripening or higher disease/pest pressure that could otherwise cause fruit loss if left too long. This zone-based approach, rather than harvesting an entire orchard block uniformly on a single date, generally improves both yield capture and final fruit quality, especially in orchards with variable soil, irrigation, or microclimate conditions across the planting.

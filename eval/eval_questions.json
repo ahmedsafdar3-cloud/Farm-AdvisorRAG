@@ -1,0 +1,17 @@
+[
+  {"question": "My olive tree leaves have yellow-orange pustules and it's been raining a lot lately, what could this be?", "expected_source": "Olive Diseases Pests"},
+  {"question": "What bugs commonly tunnel into ripening olive fruit and cause it to drop early?", "expected_source": "Olive Diseases Pests"},
+  {"question": "My tree suddenly wilted on one side and the dead leaves aren't falling off, what's going on?", "expected_source": "Olive Diseases Pests"},
+  {"question": "How often should I test my orchard soil and what should I check for?", "expected_source": "Soil Health Fertilization"},
+  {"question": "My new leaves are turning yellow between the veins, what nutrient issue is this?", "expected_source": "Soil Health Fertilization"},
+  {"question": "How much nitrogen fertilizer should I apply and when during the season?", "expected_source": "Soil Health Fertilization"},
+  {"question": "How much water do mature drip-irrigated olive trees need per day in summer?", "expected_source": "Irrigation Management"},
+  {"question": "My tree's leaves are yellowing from the inside of the canopy out, could I be overwatering?", "expected_source": "Irrigation Management"},
+  {"question": "How do I know if my drip emitters are clogged?", "expected_source": "Irrigation Management"},
+  {"question": "When is the best time to harvest olives for oil production?", "expected_source": "Harvest Yield Planning"},
+  {"question": "How can I estimate my olive yield before harvest without counting every fruit by hand?", "expected_source": "Harvest Yield Planning"},
+  {"question": "How quickly do harvested olives need to be processed to avoid quality loss?", "expected_source": "Harvest Yield Planning"},
+  {"question": "My wheat has yellow stripes of pustules on the leaves in early spring, what disease is this?", "expected_source": "Field Crop Pest Management"},
+  {"question": "How does cotton leaf curl virus spread between plants?", "expected_source": "Field Crop Pest Management"},
+  {"question": "What causes dead heart symptoms in rice plants?", "expected_source": "Field Crop Pest Management"}
+]
