@@ -9,6 +9,9 @@ just including it somewhere in the top k).
 Run: python eval/run_eval.py
 """
 
+import argparse
+from pathlib import Path
+from datetime import datetime, timezone
 import os
 import sys
 import json
@@ -19,7 +22,7 @@ from rag_engine import RAGEngine
 EVAL_PATH = os.path.join(os.path.dirname(__file__), "eval_questions.json")
 
 
-def main(k=4):
+def main(k=4, output=None):
     with open(EVAL_PATH) as f:
         eval_set = json.load(f)
 
@@ -59,7 +62,7 @@ def main(k=4):
     print(f"RETRIEVAL EVALUATION  (top_k={k}, {len(eval_set)} questions)")
     print(f"{'='*60}")
     for r in results_log:
-        status = "✓" if r["hit"] else "✗"
+        status = "PASS" if r["hit"] else "MISS"
         print(f"[{status}] {r['question'][:65]}")
         print(f"     expected: {r['expected']:<28} retrieved: {r['retrieved']}")
     print(f"{'='*60}")
@@ -67,8 +70,21 @@ def main(k=4):
     print(f"MRR:    {mrr:.3f}")
     print(f"{'='*60}\n")
 
-    return {"hit_rate": hit_rate, "mrr": mrr}
+    report = {"recorded_at": datetime.now(timezone.utc).isoformat(),
+              "backend": engine.embedder.backend, "top_k": k,
+              "question_count": len(eval_set), "hit_rate": hit_rate,
+              "mrr": mrr, "cases": results_log}
+    if output:
+        Path(output).parent.mkdir(parents=True, exist_ok=True)
+        Path(output).write_text(json.dumps(report, indent=2), encoding="utf-8")
+    return report
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Evaluate source retrieval; no LLM calls.")
+    parser.add_argument("--top-k", type=int, default=4)
+    parser.add_argument("--output", default="eval/results.json")
+    args = parser.parse_args()
+    if args.top_k < 1:
+        parser.error("--top-k must be positive")
+    main(args.top_k, args.output)

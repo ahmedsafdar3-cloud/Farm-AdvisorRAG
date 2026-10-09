@@ -1,0 +1,175 @@
+{
+  "recorded_at": "2026-10-09T15:23:41.523089+00:00",
+  "backend": "sentence-transformers",
+  "top_k": 4,
+  "question_count": 15,
+  "hit_rate": 1.0,
+  "mrr": 0.9333333333333333,
+  "cases": [
+    {
+      "question": "My olive tree leaves have yellow-orange pustules and it's been raining a lot lately, what could this be?",
+      "expected": "Olive Diseases Pests",
+      "retrieved": [
+        "Irrigation Management",
+        "Olive Diseases Pests",
+        "Olive Diseases Pests",
+        "Soil Health Fertilization"
+      ],
+      "hit": true
+    },
+    {
+      "question": "What bugs commonly tunnel into ripening olive fruit and cause it to drop early?",
+      "expected": "Olive Diseases Pests",
+      "retrieved": [
+        "Olive Diseases Pests",
+        "Irrigation Management",
+        "Harvest Yield Planning",
+        "Harvest Yield Planning"
+      ],
+      "hit": true
+    },
+    {
+      "question": "My tree suddenly wilted on one side and the dead leaves aren't falling off, what's going on?",
+      "expected": "Olive Diseases Pests",
+      "retrieved": [
+        "Olive Diseases Pests",
+        "Soil Health Fertilization",
+        "Soil Health Fertilization",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How often should I test my orchard soil and what should I check for?",
+      "expected": "Soil Health Fertilization",
+      "retrieved": [
+        "Soil Health Fertilization",
+        "Soil Health Fertilization",
+        "Harvest Yield Planning",
+        "Soil Health Fertilization"
+      ],
+      "hit": true
+    },
+    {
+      "question": "My new leaves are turning yellow between the veins, what nutrient issue is this?",
+      "expected": "Soil Health Fertilization",
+      "retrieved": [
+        "Soil Health Fertilization",
+        "Soil Health Fertilization",
+        "Field Crop Pest Management",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How much nitrogen fertilizer should I apply and when during the season?",
+      "expected": "Soil Health Fertilization",
+      "retrieved": [
+        "Irrigation Management",
+        "Soil Health Fertilization",
+        "Soil Health Fertilization",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How much water do mature drip-irrigated olive trees need per day in summer?",
+      "expected": "Irrigation Management",
+      "retrieved": [
+        "Irrigation Management",
+        "Irrigation Management",
+        "Irrigation Management",
+        "Soil Health Fertilization"
+      ],
+      "hit": true
+    },
+    {
+      "question": "My tree's leaves are yellowing from the inside of the canopy out, could I be overwatering?",
+      "expected": "Irrigation Management",
+      "retrieved": [
+        "Irrigation Management",
+        "Soil Health Fertilization",
+        "Olive Diseases Pests",
+        "Irrigation Management"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How do I know if my drip emitters are clogged?",
+      "expected": "Irrigation Management",
+      "retrieved": [
+        "Irrigation Management",
+        "Soil Health Fertilization",
+        "Irrigation Management",
+        "Field Crop Pest Management"
+      ],
+      "hit": true
+    },
+    {
+      "question": "When is the best time to harvest olives for oil production?",
+      "expected": "Harvest Yield Planning",
+      "retrieved": [
+        "Harvest Yield Planning",
+        "Harvest Yield Planning",
+        "Harvest Yield Planning",
+        "Irrigation Management"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How can I estimate my olive yield before harvest without counting every fruit by hand?",
+      "expected": "Harvest Yield Planning",
+      "retrieved": [
+        "Harvest Yield Planning",
+        "Harvest Yield Planning",
+        "Harvest Yield Planning",
+        "Harvest Yield Planning"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How quickly do harvested olives need to be processed to avoid quality loss?",
+      "expected": "Harvest Yield Planning",
+      "retrieved": [
+        "Harvest Yield Planning",
+        "Harvest Yield Planning",
+        "Irrigation Management",
+        "Irrigation Management"
+      ],
+      "hit": true
+    },
+    {
+      "question": "My wheat has yellow stripes of pustules on the leaves in early spring, what disease is this?",
+      "expected": "Field Crop Pest Management",
+      "retrieved": [
+        "Field Crop Pest Management",
+        "Soil Health Fertilization",
+        "Olive Diseases Pests",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    },
+    {
+      "question": "How does cotton leaf curl virus spread between plants?",
+      "expected": "Field Crop Pest Management",
+      "retrieved": [
+        "Field Crop Pest Management",
+        "Field Crop Pest Management",
+        "Olive Diseases Pests",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    },
+    {
+      "question": "What causes dead heart symptoms in rice plants?",
+      "expected": "Field Crop Pest Management",
+      "retrieved": [
+        "Field Crop Pest Management",
+        "Irrigation Management",
+        "Soil Health Fertilization",
+        "Olive Diseases Pests"
+      ],
+      "hit": true
+    }
+  ]
+}

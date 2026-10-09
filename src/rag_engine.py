@@ -1,14 +1,3 @@
-"""
-RAG engine: hybrid retrieval (dense embeddings + BM25 keyword search, fused
-with Reciprocal Rank Fusion) followed by grounded answer generation with
-inline source citations.
-
-Why hybrid: dense embeddings catch semantic/paraphrased matches ("bugs eating
-my olives" -> olive fruit fly) while BM25 catches exact keyword/jargon matches
-(a specific chemical name, a disease name) that embeddings sometimes miss.
-Fusing both is a standard production RAG pattern, not just an academic one.
-"""
-
 import os
 import json
 import logging
@@ -54,13 +43,13 @@ class RAGEngine:
 
         with open(os.path.join(DB_DIR, "embedder_backend.json")) as f:
             backend_info = json.load(f)
-        self.embedder = get_embedder()
-        if self.embedder.backend != backend_info["backend"]:
-            logger.warning(
-                "Embedder backend mismatch: index was built with '%s' but "
-                "query time loaded '%s'. Re-run ingest.py to fix.",
-                backend_info["backend"], self.embedder.backend,
-            )
+        backend = backend_info["backend"]
+        if backend == "tfidf-fallback":
+            self.embedder = TfidfEmbedder()
+        elif backend == "sentence-transformers":
+            self.embedder = DenseEmbedder()
+        else:
+            raise ValueError(f"Unsupported index embedding backend: {backend}")
         if isinstance(self.embedder, TfidfEmbedder):
             # TF-IDF vectorizer must be refit on the same corpus it indexed with.
             self.embedder.fit([c["text"] for c in self.corpus])
@@ -81,7 +70,7 @@ class RAGEngine:
     def retrieve(self, query: str, k: int = None):
         """Hybrid retrieval via Reciprocal Rank Fusion (RRF)."""
         k = k or self.top_k
-        pool_size = max(k * 3, 10)
+        pool_size = min(max(k * 3, 10), len(self.corpus))
 
         dense_ranked = self._dense_search(query, pool_size)
         sparse_ranked = self._sparse_search(query, pool_size)
@@ -128,19 +117,19 @@ ANSWER:"""
         groq_key = os.environ.get("GROQ_API_KEY")
         anthropic_key = os.environ.get("ANTHROPIC_API_KEY")
 
+        if os.environ.get("FARM_RETRIEVAL_ONLY") == "1":
+            groq_key = anthropic_key = None
+
         if groq_key:
             return self._generate_groq(prompt, groq_key)
         elif anthropic_key:
             return self._generate_anthropic(prompt, anthropic_key)
         else:
-            return (
-                "[No GROQ_API_KEY or ANTHROPIC_API_KEY set — showing retrieved context only. "
-                "Get a free Groq API key at https://console.groq.com/keys to enable generated answers.]\n\n"
-                + prompt.split("QUESTION:")[0].replace("SOURCES:\n", "")
-            )
+            context = prompt.split("SOURCES:\n", 1)[1].rsplit("\n\nQUESTION:", 1)[0]
+            return "**Retrieved source excerpts** (answer generation is disabled):\n\n" + context
 
     def _generate_groq(self, prompt: str, api_key: str) -> str:
-        """Free tier, no credit card required. https://console.groq.com/keys"""
+        """Generate an answer using Groq."""
         from groq import Groq
         client = Groq(api_key=api_key)
         response = client.chat.completions.create(
@@ -151,7 +140,7 @@ ANSWER:"""
         return response.choices[0].message.content
 
     def _generate_anthropic(self, prompt: str, api_key: str) -> str:
-        """Paid, but higher quality. Optional alternative to Groq."""
+        """Generate an answer using Anthropic."""
         import anthropic
         client = anthropic.Anthropic(api_key=api_key)
         response = client.messages.create(

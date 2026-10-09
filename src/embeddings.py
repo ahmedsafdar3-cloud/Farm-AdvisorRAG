@@ -1,15 +1,6 @@
-"""
-Embedding backend for the RAG pipeline.
+"""Transformer embeddings with an optional offline TF-IDF backend."""
 
-Primary path: sentence-transformers (all-MiniLM-L6-v2) — real dense embeddings,
-what you'd use in production and what interviewers expect to hear about.
-
-Fallback path: TF-IDF (scikit-learn) — used automatically if the transformer
-model can't be downloaded (e.g. no internet / offline environment). This keeps
-the pipeline runnable everywhere and is worth mentioning in an interview as a
-deliberate graceful-degradation design choice, not a limitation you missed.
-"""
-
+import os
 import logging
 import numpy as np
 
@@ -57,6 +48,13 @@ def get_embedder():
     reason (no internet, model not cached, etc.), fall back to TF-IDF so the
     rest of the pipeline still runs end-to-end.
     """
+    backend = os.environ.get("FARM_EMBEDDING_BACKEND", "auto")
+    if backend == "tfidf":
+        return TfidfEmbedder()
+    if backend not in {"auto", "dense"}:
+        raise ValueError("FARM_EMBEDDING_BACKEND must be auto, dense, or tfidf")
+    if backend == "dense":
+        return DenseEmbedder()
     try:
         embedder = DenseEmbedder()
         logger.info("Using sentence-transformers embedder (%s)", _MODEL_NAME)

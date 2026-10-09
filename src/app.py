@@ -19,10 +19,10 @@ st.caption(
     "grounded in an agronomy knowledge base, with cited sources."
 )
 
-if not os.environ.get("GROQ_API_KEY") and not os.environ.get("ANTHROPIC_API_KEY"):
+if os.environ.get("FARM_RETRIEVAL_ONLY") == "1" or (not os.environ.get("GROQ_API_KEY") and not os.environ.get("ANTHROPIC_API_KEY")):
     st.warning(
-        "No API key set. The app will still retrieve relevant sources, "
-        "but won't generate a natural-language answer. Get a free key at "
+        "Retrieval-only mode. The app retrieves relevant sources, "
+        "but won't generate a natural-language answer. Configure a provider key at "
         "console.groq.com/keys and add it to your .env file to enable full answers.",
         icon="⚠️",
     )
@@ -37,6 +37,9 @@ try:
     engine = load_engine()
 except FileNotFoundError as e:
     st.error(f"{e}\n\nRun `python src/ingest.py` first to build the knowledge base index.")
+    st.stop()
+except Exception:
+    st.error("The knowledge base could not be loaded. Check dependencies and embedding model access, then rebuild the index with `python src/ingest.py`.")
     st.stop()
 
 if "messages" not in st.session_state:
@@ -56,8 +59,12 @@ if query := st.chat_input("Ask about crop diseases, soil, irrigation, harvest ti
         st.markdown(query)
 
     with st.chat_message("assistant"):
-        with st.spinner("Retrieving and generating..."):
-            result = engine.answer(query)
+        try:
+            with st.spinner("Retrieving sources..."):
+                result = engine.answer(query)
+        except Exception:
+            st.error("Unable to complete this request. Check the index and provider configuration, then try again.")
+            st.stop()
         st.markdown(result["answer"])
         with st.expander("Sources"):
             for s in result["sources"]:
@@ -77,7 +84,7 @@ This is a **hybrid RAG** system:
 - **Dense retrieval** via sentence-transformer embeddings (semantic/paraphrase matching)
 - **Sparse retrieval** via BM25 (exact keyword/jargon matching)
 - Fused with **Reciprocal Rank Fusion**
-- Answers are grounded strictly in retrieved context, with inline citations
+- Answers are prompted to use retrieved context, with inline citations
 
 Knowledge base: 5 agronomy documents covering olive diseases/pests, soil health,
 irrigation, harvest planning, and field crop pest management.
